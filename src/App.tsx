@@ -1,8 +1,9 @@
-import TechnologySection from "./components/TechnologySection";
 import { useEffect, useState } from "react";
 import type { Technology } from "./types";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import TechnologySection from "./components/TechnologySection";
+import YourStack from "./components/YourStack";
 
 function App() {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
@@ -37,20 +38,20 @@ function App() {
   return (
     <div className="min-h-screen bg-base-100">
       <Navbar />
-            <main>
+      <main>
         <Hero />
         <section id="technologies" className="mx-auto max-w-7xl px-4 pb-20">
           <h2 className="text-3xl font-bold sm:text-4xl">
             Explore the <span className="brand-gradient-text">Technologies</span>
           </h2>
           <p className="mt-2 text-base-content/70">Pick one technology per category to build your ideal stack.</p>
-          <div className="mt-10">
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
             <TechnologySection technologies={technologies} stack={stack} onAddToStack={handleAddToStack} />
+            <YourStack stack={stack} onRemove={handleRemoveFromStack} onRemoveAll={handleRemoveAll} />
           </div>
         </section>
       </main>
     </div>
   );
 }
-
 export default App;
