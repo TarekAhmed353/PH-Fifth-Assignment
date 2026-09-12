@@ -7,8 +7,13 @@ interface TechnologyCardProps {
 }
 
 const TechnologyCard = ({ tech, isAdded, onAddToStack }: TechnologyCardProps) => {
+  const baseCard = "flex flex-col rounded-2xl bg-base-100 p-6 transition-all";
+  const cardState = isAdded
+    ? "border-2 border-pink-500 shadow-md shadow-pink-500/10"
+    : "border border-base-200 shadow-sm hover:shadow-md";
+
   return (
-    <div className="flex flex-col rounded-2xl border border-base-200 bg-base-100 p-6 shadow-sm transition-shadow hover:shadow-md">
+    <div className={`${baseCard} ${cardState}`}>
       <div className="flex items-start justify-between">
         <img src={tech.icon} alt={`${tech.name} logo`} className="h-9 w-9 object-contain" />
         <span className="rounded-full bg-base-200 px-3 py-1 text-xs font-medium text-base-content/80">{tech.badge}</span>
@@ -31,7 +36,8 @@ const TechnologyCard = ({ tech, isAdded, onAddToStack }: TechnologyCardProps) =>
           type="button"
           onClick={() => onAddToStack(tech)}
           disabled={isAdded}
-          className="btn mt-4 w-full rounded-lg border-0 bg-slate-900 text-white hover:bg-slate-800 disabled:bg-base-200 disabled:text-base-content/50"
+          title={isAdded ? `${tech.name} is already in your stack` : undefined}
+          className="btn mt-4 w-full rounded-lg border-0 bg-slate-900 text-white hover:bg-slate-800 disabled:pointer-events-auto disabled:cursor-not-allowed disabled:bg-base-200 disabled:text-base-content/50 disabled:hover:bg-base-200"
         >
           {isAdded ? "✓ Added to Stack" : "Add to Stack"}
         </button>
