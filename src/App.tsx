@@ -7,6 +7,7 @@ import Hero from "./components/Hero";
 import TechnologySection from "./components/TechnologySection";
 import YourStack from "./components/YourStack";
 import Loader from "./components/Loader";
+import Footer from "./components/Footer";
 
 function App() {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
@@ -66,9 +67,9 @@ function App() {
           )}
         </section>
       </main>
+      <Footer />
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar theme="light" />
     </div>
   );
 }
-
 export default App;
