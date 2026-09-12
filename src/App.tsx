@@ -1,9 +1,13 @@
 import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
 function App() {
   return (
     <div className="min-h-screen bg-base-100">
       <Navbar />
-      <div className="h-[200vh]" />
+      <main>
+        <Hero />
+      </main>
     </div>
   );
 }
