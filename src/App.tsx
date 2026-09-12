@@ -1,3 +1,4 @@
+import TechnologySection from "./components/TechnologySection";
 import { useEffect, useState } from "react";
 import type { Technology } from "./types";
 import Navbar from "./components/Navbar";
@@ -36,11 +37,17 @@ function App() {
   return (
     <div className="min-h-screen bg-base-100">
       <Navbar />
-      <main>
+            <main>
         <Hero />
-        <p className="p-8 text-center">
-          Loaded {technologies.length} technologies. Loading: {String(loading)}. Stack: {stack.length}
-        </p>
+        <section id="technologies" className="mx-auto max-w-7xl px-4 pb-20">
+          <h2 className="text-3xl font-bold sm:text-4xl">
+            Explore the <span className="brand-gradient-text">Technologies</span>
+          </h2>
+          <p className="mt-2 text-base-content/70">Pick one technology per category to build your ideal stack.</p>
+          <div className="mt-10">
+            <TechnologySection technologies={technologies} stack={stack} onAddToStack={handleAddToStack} />
+          </div>
+        </section>
       </main>
     </div>
   );
