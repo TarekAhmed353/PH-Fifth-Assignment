@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import type { Technology } from "./types";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TechnologySection from "./components/TechnologySection";
 import YourStack from "./components/YourStack";
+import Loader from "./components/Loader";
 
 function App() {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
@@ -21,18 +24,26 @@ function App() {
   const handleAddToStack = (tech: Technology) => {
     const alreadyAdded = stack.some((item) => item.id === tech.id);
     if (alreadyAdded) {
-      console.warn(`${tech.name} is already in your stack.`);
+      toast.warning(`${tech.name} is already in your stack.`);
       return;
     }
     setStack([...stack, tech]);
+    toast.success(`${tech.name} added to your stack.`);
   };
 
   const handleRemoveFromStack = (id: string) => {
+    const tech = stack.find((item) => item.id === id);
     setStack(stack.filter((item) => item.id !== id));
+    toast.info(`${tech?.name ?? "Technology"} removed from your stack.`);
   };
 
   const handleRemoveAll = () => {
+    if (stack.length === 0) {
+      toast.warning("Your stack is already empty.");
+      return;
+    }
     setStack([]);
+    toast.info("All technologies removed from your stack.");
   };
 
   return (
@@ -45,13 +56,19 @@ function App() {
             Explore the <span className="brand-gradient-text">Technologies</span>
           </h2>
           <p className="mt-2 text-base-content/70">Pick one technology per category to build your ideal stack.</p>
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
-            <TechnologySection technologies={technologies} stack={stack} onAddToStack={handleAddToStack} />
-            <YourStack stack={stack} onRemove={handleRemoveFromStack} onRemoveAll={handleRemoveAll} />
-          </div>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
+              <TechnologySection technologies={technologies} stack={stack} onAddToStack={handleAddToStack} />
+              <YourStack stack={stack} onRemove={handleRemoveFromStack} onRemoveAll={handleRemoveAll} />
+            </div>
+          )}
         </section>
       </main>
+      <ToastContainer position="top-right" autoClose={2000} hideProgressBar theme="light" />
     </div>
   );
 }
+
 export default App;
