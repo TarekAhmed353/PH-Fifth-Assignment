@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-base-200 bg-base-100/90 backdrop-blur">
       <nav className="navbar mx-auto max-w-7xl gap-2 px-3 sm:px-6">
-        <div className="navbar-start w-auto shrink-0 lg:w-1/2">
+        <div className="navbar-start w-auto shrink-0 lg:flex-1">
           <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost px-1" aria-label="Open menu">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,7 +55,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end w-auto shrink-0 gap-1 sm:gap-2 lg:w-1/2">
+        <div className="navbar-end w-auto shrink-0 gap-1 sm:gap-2 lg:flex-1">
           <a href="#signin" className="btn btn-ghost btn-xs font-medium sm:btn-sm">Sign In</a>
           <a href="#signup" className="brand-gradient-bg btn btn-xs whitespace-nowrap rounded-full border-0 text-white hover:opacity-90 sm:btn-sm">Sign Up</a>
         </div>
