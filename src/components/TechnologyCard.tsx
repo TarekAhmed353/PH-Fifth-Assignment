@@ -37,7 +37,7 @@ const TechnologyCard = ({ tech, isAdded, onAddToStack }: TechnologyCardProps) =>
           onClick={() => onAddToStack(tech)}
           disabled={isAdded}
           title={isAdded ? `${tech.name} is already in your stack` : undefined}
-          className="btn mt-4 w-full rounded-lg border-0 bg-slate-900 text-white hover:bg-slate-800 disabled:pointer-events-auto disabled:cursor-not-allowed disabled:bg-base-200 disabled:text-base-content/50 disabled:hover:bg-base-200"
+                    className="btn mt-4 w-full rounded-lg border-0 bg-slate-900 text-white hover:bg-slate-800 disabled:pointer-events-auto disabled:cursor-not-allowed disabled:border disabled:border-pink-200 disabled:bg-pink-50 disabled:text-pink-600 disabled:hover:bg-pink-50"
         >
           {isAdded ? "✓ Added to Stack" : "Add to Stack"}
         </button>
